@@ -1,3 +1,3 @@
-function getMax(arr) {
-  return Math.max(...arr);
+function getMin(arr) {
+  return Math.min(...arr);
 }
