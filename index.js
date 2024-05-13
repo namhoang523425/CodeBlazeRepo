@@ -1,10 +1,17 @@
-function findTheDifference(s, t) {
-  let result = 0;
-  for (const char of s) {
-    result ^= char.charCodeAt(0);
+function sortedListToBST(head) {
+  if (!head) return null;
+  if (!head.next) return new TreeNode(head.val);
+  let slow = head;
+  let fast = head;
+  let prev = null;
+  while (fast && fast.next) {
+    prev = slow;
+    slow = slow.next;
+    fast = fast.next.next;
   }
-  for (const char of t) {
-    result ^= char.charCodeAt(0);
-  }
-  return String.fromCharCode(result);
+  const root = new TreeNode(slow.val);
+  prev.next = null;
+  root.left = sortedListToBST(head);
+  root.right = sortedListToBST(slow.next);
+  return root;
 }
